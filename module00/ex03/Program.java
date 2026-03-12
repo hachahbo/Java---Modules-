@@ -27,6 +27,7 @@ public class Program {
     {
         long    holder = 0;
         int currentWeek = 0;
+        long  multiplier = 1 ;
 
 
         Scanner  scanner = new Scanner(System.in);
@@ -43,29 +44,47 @@ public class Program {
                 displyTheChart(holder);
                 break;
             }
-            currentWeek = 0;
             if(str.equals("Week"))
             {
                 int week = scanner.nextInt();
-                if(week - currentWeek != 1)
+
+                if(currentWeek == 0)
                 {
-                    System.out.println("IllegalArgument");
-                    break;
+                    currentWeek = week;
+                    if(currentWeek != 1)
+                    {
+                        System.out.println("IllegalArgument");
+                        System.exit(-1);;
+                    }
+
                 }
 
+                else if(week - currentWeek != 1)
+                {
+                    System.out.println("IllegalArgument");
+                    System.exit(-1);;
+                }
+                
                 System.out.print("->    ");
                 int i = 0;
                 int min = scanner.nextInt();
                 while(i < 4)
-                {
-                    n = scanner.nextInt();
-                    if (min > n)
-                        min = n;
-                    i++;
+                    {
+                        n = scanner.nextInt();
+                        if (min > n)
+                            min = n;
+                        i++;
+                    }
+                    holder = holder + (min * multiplier);
+                    multiplier *= 10;
+                    currentWeek = week;
                 }
-                holder = (holder * 10) + min;
-                currentWeek = week;
+                else
+                {
+                    System.out.println("IllegalArgument");
+                    System.exit(-1);
+                }
+                    
             }
-        }
     } 
  }
