@@ -47,7 +47,6 @@ public class Program {
             if(str.equals("Week"))
             {
                 int week = scanner.nextInt();
-
                 if(currentWeek == 0)
                 {
                     currentWeek = week;
@@ -68,9 +67,18 @@ public class Program {
                 System.out.print("->    ");
                 int i = 0;
                 int min = scanner.nextInt();
+                if (min < 1 || min > 9) {
+                    System.out.println("IllegalArgument");
+                    System.exit(-1);
+                }
                 while(i < 4)
                     {
+                        
                         n = scanner.nextInt();
+                        if (n < 1 || n > 9) {
+                            System.out.println("IllegalArgument");
+                            System.exit(-1);
+                        }
                         if (min > n)
                             min = n;
                         i++;
@@ -78,6 +86,11 @@ public class Program {
                     holder = holder + (min * multiplier);
                     multiplier *= 10;
                     currentWeek = week;
+
+                    if (currentWeek == 18) {
+                        displyTheChart(holder);
+                        break;
+                    }
                 }
                 else
                 {
